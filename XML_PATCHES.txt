@@ -1,0 +1,25 @@
+Dell DiagOS XML patches (required on Proxmox)
+
+Background:
+Dell’s DiagOS tooling expects certain platform devices on /dev/i2c-1.
+On Proxmox (Debian-based) on VEP14xx / EDGE6xxVN, the TC654/LM75/etc are on /dev/i2c-0.
+If unpatched, tools like fantool/temptool/ledtool will fail to read sensors.
+
+Patch:
+Replace all occurrences of /dev/i2c-1 with /dev/i2c-0 in these files:
+
+  /etc/dn/diag/default_fan_list.xml
+  /etc/dn/diag/default_temp_sensors.xml
+  /etc/dn/diag/default_led_list.xml
+  /etc/dn/diag/default_pl_list.xml   (optional unless using pltool/CPLD access)
+
+One-liners:
+  sed -i 's#/dev/i2c-1#/dev/i2c-0#g' /etc/dn/diag/default_fan_list.xml
+  sed -i 's#/dev/i2c-1#/dev/i2c-0#g' /etc/dn/diag/default_temp_sensors.xml
+  sed -i 's#/dev/i2c-1#/dev/i2c-0#g' /etc/dn/diag/default_led_list.xml
+  sed -i 's#/dev/i2c-1#/dev/i2c-0#g' /etc/dn/diag/default_pl_list.xml
+
+Notes:
+- Run as root (no sudo required if already root).
+- These files are installed by the Dell DiagOS .deb and may be overwritten by reinstall/upgrade.
+- If tools still fail, verify i2c modules are loaded: i2c-dev, i2c-i801, i2c-ismt.

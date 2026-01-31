@@ -1,0 +1,13 @@
+[Unit]
+Description=VEP System RGB LED tracks CPU temperature
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/sbin/vep-led-temp.sh
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target
+
