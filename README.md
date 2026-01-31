@@ -47,7 +47,7 @@ Clone the repo and run the installer:
 
 ```bash
 git clone https://github.com/mhannis/VEP14xx.git
-cd YOURREPO
+cd VEP14xx
 
 # Put the Dell deb in the repo root (or follow your repo instructions)
 ls -la dn-diags-VEP1400-DiagOS-3.43.4.81-26-2022-12-08.deb
