@@ -58,7 +58,7 @@ apt_update_or_fix() {
 install_prereqs() {
   log "[2/9] Installing prerequisites..."
   apt-get install -y --no-install-recommends \
-    i2c-tools vim-common lm-sensors dmidecode pciutils jq coreutils sed grep util-linux systemd
+    i2c-tools vim-common lm-sensors dmidecode pciutils jq coreutils xxd sed grep util-linux systemd
 
   modprobe i2c-dev 2>/dev/null || true
   if ! grep -q '^i2c-dev' /etc/modules 2>/dev/null; then
