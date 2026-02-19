@@ -1,0 +1,13 @@
+[Unit]
+Description=VEP System patch i2c addresses on startup
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/sbin/vep14xx-patch-i2c.sh
+KillMode=process
+Restart=no
+
+[Install]
+WantedBy=network.target
+
